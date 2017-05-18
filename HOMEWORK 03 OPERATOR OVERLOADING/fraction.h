@@ -21,7 +21,7 @@ public:
     
     // convert int to fraction?
     operator int();
-    
+
     // friends: streams
     friend std::ostream& operator << (std::ostream& out, const Fraction& printMe);
     friend std::istream& operator >> (std::istream& in, Fraction& readMe);
@@ -43,9 +43,18 @@ public:
     
     // augment assignment
     Fraction operator+=(const int &right);
+    Fraction operator-=(const int &right);
     Fraction operator-=(const Fraction &right);
     Fraction operator*=(const int &right);
     Fraction operator/=(const int &right);
+    
+    // relational operators
+    friend bool operator == (const Fraction& lhs, const Fraction& rhs);
+    friend bool operator > (const Fraction& lhs, const Fraction& rhs);
+    friend bool operator < (const Fraction& lhs, const Fraction& rhs);
+    friend bool operator <= (const Fraction& lhs, const Fraction& rhs);
+    friend bool operator != (const Fraction& lhs, const Fraction& rhs);
+
     
 private:
     int m_numerator;

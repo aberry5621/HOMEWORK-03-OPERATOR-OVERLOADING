@@ -99,7 +99,7 @@ int main()
     cout << "f1 = " << f1 << endl;
     cout << "f2 = " << f2 << endl;
     
-    /*
+    
     cout << "\n\nTEST 9: ==, >, <, >=, <=, !=" << endl;
     //Relational operators
     if (f1 == f2)
@@ -114,16 +114,21 @@ int main()
         cout << "f1 < f2 tested true." << endl;
     else
         cout << "f1 < f2 tested false." << endl;
-        cout << "nThis statement is executed..." << endl;
+        cout << "\nThis statement is executed..." << endl;
         cout << "f1 = f2; " << endl;
+    
+    
     f1 = f2;
+    
     if (f1 >= f2)
         cout << "f1 >= f2 tested true." << endl;
     else
         cout << "f1 >= f2 tested false." << endl;
-        cout << "nThis statement is executed..." << endl;
+        cout << "\nThis statement is executed..." << endl;
         cout << "f1 -= 1;" << endl;
+    
     f1 -= 1;
+    
     if (f1 <= f2)
         cout << "f1 <= f2 tesed true." << endl;
     else
@@ -133,6 +138,6 @@ int main()
     else
         cout << "f1 != f2 tested false." << endl;
      
-     */
+    /* */
     return 0;
 }

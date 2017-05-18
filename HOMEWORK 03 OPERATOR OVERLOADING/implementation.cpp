@@ -19,9 +19,8 @@ Fraction::Fraction(int p_w, int p_n, int p_d) {
     m_numerator = p_w * p_d + p_n;
     m_denominator = p_d;
 }
-
+// convert int to fraction?
 Fraction::operator int() {
-    
     return 0;
 }
 
@@ -37,7 +36,7 @@ std::istream& operator>>(std::istream& in, Fraction& readMe) {
     
     std::cout << std::endl << "Extraction operator overload called... " << std::endl;
     
-    // somehow parse whatever comes in to a reduced fraction
+    // TODO: somehow parse whatever comes in to a reduced fraction
     // 3+1/2
     // 1/2
     // 1
@@ -146,7 +145,7 @@ Fraction Fraction::operator--(int dum) {
 
 // augment assignment
 Fraction Fraction:: operator+=(const int &right) {
-    std::cout << std::endl << "Augmented INT assignment operator overload called... " << std::endl;
+    std::cout << std::endl << "Augmented INT += assignment operator overload called... " << std::endl;
     // for return of result
     Fraction result;
     
@@ -169,8 +168,32 @@ Fraction Fraction:: operator+=(const int &right) {
     return result;
 }
 
+Fraction Fraction:: operator-=(const int &right) {
+    std::cout << std::endl << "Augmented INT -= assignment operator overload called... " << std::endl;
+    // for return of result
+    Fraction result;
+    
+    // convert integer input into whole fraction
+    Fraction f_tmp(0, m_numerator, m_denominator);
+    
+    f_tmp.m_numerator = right;
+    f_tmp.m_denominator = 1;
+    
+    // simple multiply to find common denominator
+    int common_denominator = this->m_denominator * f_tmp.m_denominator;
+    
+    // multiply numberators to match common denominator
+    result.m_numerator = (this->m_numerator * f_tmp.m_denominator) - (f_tmp.m_numerator * this->m_denominator);
+    
+    result.m_denominator = common_denominator;
+    this->m_numerator = result.m_numerator;
+    this->m_denominator = result.m_denominator;
+    
+    return result;
+}
+
 Fraction Fraction:: operator-=(const Fraction &right) {
-    std::cout << std::endl << "Augmented FRACTION assignment operator overload called... " << std::endl;
+    std::cout << std::endl << "Augmented FRACTION -= assignment operator overload called... " << std::endl;
     
     Fraction f_tmp(0, m_numerator, m_denominator);
     
@@ -195,7 +218,7 @@ Fraction Fraction:: operator-=(const Fraction &right) {
 }
 
 Fraction Fraction:: operator*=(const int &right) {
-    
+    std::cout << std::endl << "Augmented INT *= assignment operator overload called... " << std::endl;
     Fraction f_intput;
     
     f_intput.m_numerator = right;
@@ -214,7 +237,7 @@ Fraction Fraction:: operator*=(const int &right) {
 }
 
 Fraction Fraction:: operator/=(const int &right) {
-    
+    std::cout << std::endl << "Augmented INT /= assignment operator overload called... " << std::endl;
     Fraction f_intput;
     
     f_intput.m_numerator = right;
@@ -230,6 +253,111 @@ Fraction Fraction:: operator/=(const int &right) {
     
     return result;
     
+}
+
+bool operator == (const Fraction& lhs, const Fraction& rhs) {
+    std::cout << std::endl << "FRIEND == relational operator overload called... " << std::endl;
+    
+    Fraction f1;
+    Fraction f2;
+    
+    // simple multiply to find common denominator
+    int common_denominator = lhs.m_denominator * rhs.m_denominator;
+    // multiply common numerators
+    f1.m_numerator = lhs.m_numerator * rhs.m_denominator;
+    f2.m_numerator = rhs.m_numerator * lhs.m_denominator;
+    // set common denominators ? don't even need this for == compare
+    f1.m_denominator = common_denominator;
+    f2.m_denominator = common_denominator;
+    
+    if (f1.m_numerator == f2.m_numerator) {
+        return true;
+    }
+    return false;
+}
+
+bool operator > (const Fraction& lhs, const Fraction& rhs) {
+    std::cout << std::endl << "FRIEND > relational operator overload called... " << std::endl;
+    
+    Fraction f1;
+    Fraction f2;
+    
+    // simple multiply to find common denominator
+    int common_denominator = lhs.m_denominator * rhs.m_denominator;
+    // multiply common numerators
+    f1.m_numerator = lhs.m_numerator * rhs.m_denominator;
+    f2.m_numerator = rhs.m_numerator * lhs.m_denominator;
+    // set common denominators ? don't even need this for == compare
+    f1.m_denominator = common_denominator;
+    f2.m_denominator = common_denominator;
+    
+    if (f1.m_numerator > f2.m_numerator) {
+        return true;
+    }
+    return false;
+}
+
+bool operator < (const Fraction& lhs, const Fraction& rhs) {
+    std::cout << std::endl << "FRIEND < relational operator overload called... " << std::endl;
+    
+    Fraction f1;
+    Fraction f2;
+    
+    // simple multiply to find common denominator
+    int common_denominator = lhs.m_denominator * rhs.m_denominator;
+    // multiply common numerators
+    f1.m_numerator = lhs.m_numerator * rhs.m_denominator;
+    f2.m_numerator = rhs.m_numerator * lhs.m_denominator;
+    // set common denominators ? don't even need this for == compare
+    f1.m_denominator = common_denominator;
+    f2.m_denominator = common_denominator;
+    
+    if (f1.m_numerator < f2.m_numerator) {
+        return true;
+    }
+    return false;
+}
+
+bool operator <= (const Fraction& lhs, const Fraction& rhs) {
+    std::cout << std::endl << "FRIEND <= relational operator overload called... " << std::endl;
+    
+    Fraction f1;
+    Fraction f2;
+    
+    // simple multiply to find common denominator
+    int common_denominator = lhs.m_denominator * rhs.m_denominator;
+    // multiply common numerators
+    f1.m_numerator = lhs.m_numerator * rhs.m_denominator;
+    f2.m_numerator = rhs.m_numerator * lhs.m_denominator;
+    // set common denominators ? don't even need this for == compare
+    f1.m_denominator = common_denominator;
+    f2.m_denominator = common_denominator;
+    
+    if (f1.m_numerator <= f2.m_numerator) {
+        return true;
+    }
+    return false;
+}
+
+bool operator != (const Fraction& lhs, const Fraction& rhs) {
+    std::cout << std::endl << "FRIEND != relational operator overload called... " << std::endl;
+    
+    Fraction f1;
+    Fraction f2;
+    
+    // simple multiply to find common denominator
+    int common_denominator = lhs.m_denominator * rhs.m_denominator;
+    // multiply common numerators
+    f1.m_numerator = lhs.m_numerator * rhs.m_denominator;
+    f2.m_numerator = rhs.m_numerator * lhs.m_denominator;
+    // set common denominators ? don't even need this for == compare
+    f1.m_denominator = common_denominator;
+    f2.m_denominator = common_denominator;
+    
+    if (f1.m_numerator != f2.m_numerator) {
+        return true;
+    }
+    return false;
 }
 
 
