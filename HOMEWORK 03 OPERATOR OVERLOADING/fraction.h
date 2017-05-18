@@ -44,6 +44,8 @@ public:
     // augment assignment
     Fraction operator+=(const int &right);
     Fraction operator-=(const Fraction &right);
+    Fraction operator*=(const int &right);
+    Fraction operator/=(const int &right);
     
 private:
     int m_numerator;

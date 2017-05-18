@@ -76,18 +76,29 @@ int main()
     
     //Augmented assignments
     f1 += 1;
+    
+    cout << "\nValues of fractions AFTER testing augmented + operator..." << endl;
+    cout << "f1 = " << f1 << endl;
+    cout << "f2 = " << f2 << endl;
+    
     f2 -= f1;
     
-    /*
-    f1 *= 3;
-    f2 /= 2;
-     */
-    cout << "\nValues of fractions AFTER testing augmented operators..." << endl;
+    cout << "\nValues of fractions AFTER testing augmented - operator..." << endl;
     cout << "f1 = " << f1 << endl;
-    
-    
-    
     cout << "f2 = " << f2 << endl;
+   
+    f1 *= 3;
+    
+    cout << "\nValues of fractions AFTER testing augmented * operator..." << endl;
+    cout << "f1 = " << f1 << endl;
+    cout << "f2 = " << f2 << endl;
+    
+    f2 /= 2;
+    
+    cout << "\nValues of fractions AFTER testing augmented / operator..." << endl;
+    cout << "f1 = " << f1 << endl;
+    cout << "f2 = " << f2 << endl;
+    
     /*
     cout << "\n\nTEST 9: ==, >, <, >=, <=, !=" << endl;
     //Relational operators

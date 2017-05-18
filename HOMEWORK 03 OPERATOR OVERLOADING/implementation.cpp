@@ -175,8 +175,7 @@ Fraction Fraction:: operator-=(const Fraction &right) {
     Fraction f_tmp(0, m_numerator, m_denominator);
     
     f_tmp = right;
-    
-    
+
     Fraction result;
     
     // simple multiply to find common denominator
@@ -189,13 +188,49 @@ Fraction Fraction:: operator-=(const Fraction &right) {
     
     this->m_numerator = result.m_numerator;
     this->m_denominator = result.m_denominator;
-    
-    
+
     // return Fraction object with numerator and denominator set
     return result;
     
 }
 
+Fraction Fraction:: operator*=(const int &right) {
+    
+    Fraction f_intput;
+    
+    f_intput.m_numerator = right;
+    f_intput.m_denominator = 1;
+    
+    Fraction result;
+    
+    result.m_numerator = this->m_numerator * f_intput.m_numerator;
+    result.m_denominator = this->m_denominator * f_intput.m_denominator;
+    
+    this->m_numerator = result.m_numerator;
+    this->m_denominator = result.m_denominator;
+    
+    return result;
+    
+}
+
+Fraction Fraction:: operator/=(const int &right) {
+    
+    Fraction f_intput;
+    
+    f_intput.m_numerator = right;
+    f_intput.m_denominator = 1;
+    
+    Fraction result;
+    
+    result.m_numerator = this->m_numerator * f_intput.m_denominator;
+    result.m_denominator = this->m_denominator * f_intput.m_numerator;
+    
+    this->m_numerator = result.m_numerator;
+    this->m_denominator = result.m_denominator;
+    
+    return result;
+    
+}
 
 
 
