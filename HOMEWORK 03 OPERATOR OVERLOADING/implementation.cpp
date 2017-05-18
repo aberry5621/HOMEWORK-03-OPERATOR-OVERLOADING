@@ -169,14 +169,31 @@ Fraction Fraction:: operator+=(const int &right) {
     return result;
 }
 
-Fraction Fraction:: operator+=(const Fraction &right) {
+Fraction Fraction:: operator-=(const Fraction &right) {
     std::cout << std::endl << "Augmented FRACTION assignment operator overload called... " << std::endl;
     
     Fraction f_tmp(0, m_numerator, m_denominator);
     
     f_tmp = right;
     
-    return f_tmp;
+    
+    Fraction result;
+    
+    // simple multiply to find common denominator
+    int common_denominator = this->m_denominator * right.m_denominator;
+    
+    // multiply numberators to match common denominator
+    result.m_numerator = (this->m_numerator * right.m_denominator) - (right.m_numerator * this->m_denominator);
+    
+    result.m_denominator = common_denominator;
+    
+    this->m_numerator = result.m_numerator;
+    this->m_denominator = result.m_denominator;
+    
+    
+    // return Fraction object with numerator and denominator set
+    return result;
+    
 }
 
 
