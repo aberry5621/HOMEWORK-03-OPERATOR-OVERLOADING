@@ -147,16 +147,26 @@ Fraction Fraction::operator--(int dum) {
 // augment assignment
 Fraction Fraction:: operator+=(const int &right) {
     std::cout << std::endl << "Augmented INT assignment operator overload called... " << std::endl;
+    // for return of result
+    Fraction result;
     
     // convert integer input into whole fraction
-    
-    
     Fraction f_tmp(0, m_numerator, m_denominator);
     
     f_tmp.m_numerator = right;
     f_tmp.m_denominator = 1;
     
-    return f_tmp;
+    // simple multiply to find common denominator
+    int common_denominator = this->m_denominator * f_tmp.m_denominator;
+    
+    // multiply numberators to match common denominator
+    result.m_numerator = (this->m_numerator * f_tmp.m_denominator) + (f_tmp.m_numerator * this->m_denominator);
+    
+    result.m_denominator = common_denominator;
+    this->m_numerator = result.m_numerator;
+    this->m_denominator = result.m_denominator;
+    
+    return result;
 }
 
 Fraction Fraction:: operator+=(const Fraction &right) {

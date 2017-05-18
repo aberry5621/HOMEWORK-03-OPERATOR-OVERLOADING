@@ -85,6 +85,8 @@ int main()
      */
     cout << "\nValues of fractions AFTER testing augmented operators..." << endl;
     cout << "f1 = " << f1 << endl;
+    
+    
     /*
     cout << "f2 = " << f2 << endl;
     cout << "\n\nTEST 9: ==, >, <, >=, <=, !=" << endl;
